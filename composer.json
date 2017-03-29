@@ -1,0 +1,34 @@
+{
+  "name": "needle-project/flow-meter",
+  "description": "A small library used for testing an broker dependent flow",
+  "license": "MIT",
+  "authors": [
+    {
+      "name": "Adrian Tilita",
+      "email": "adrian@tilita.ro",
+      "homepage": "http://adrian.tilita.ro",
+      "role": "Developer"
+    }
+  ],
+  "minimum-stability": "dev",
+  "require": {
+    "php": ">=7.0.0",
+    "symfony/console": "^3.2",
+    "needle-project/fileio": "^0.2",
+    "php-amqplib/php-amqplib": "^2.6"
+  },
+  "require-dev": {
+    "phpunit/phpunit": "^6.0",
+    "squizlabs/php_codesniffer": "2.*",
+    "phpmd/phpmd" : "@stable"
+  },
+  "repositories": [
+    {
+      "type": "vcs",
+      "url": "https://github.com/needle-project/fileio"
+    }
+  ],
+  "autoload": {
+    "psr-4": {"NeedleProject\\FlowMeter\\": "src/"}
+  }
+}
