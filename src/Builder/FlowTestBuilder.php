@@ -92,7 +92,7 @@ class FlowTestBuilder
             $buildQueues[$alias] = QueueFactory::create(
                 $alias,
                 $queueParameters,
-                $connectionList[$alias]
+                $connectionList[$queueParameters['connection']]
             );
         }
         return $buildQueues;

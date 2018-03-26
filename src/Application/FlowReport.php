@@ -83,9 +83,9 @@ class FlowReport
         $result['end'] = $endConsuming;
         $result['time'] = $endConsuming - $startConsumming;
 
-        $result['ack_rate_max'] = max($ack_list);
-        $result['ack_rate_min'] = min($ack_list);
-        $result['ack_rate_avg'] = array_sum($ack_list) / count($ack_list);
+        $result['ack_rate_max'] = !empty($ack_list) ? max($ack_list) : 0;
+        $result['ack_rate_min'] = !empty($ack_list) ? max($ack_list) : 0;
+        $result['ack_rate_avg'] = !empty($ack_list) ? array_sum($ack_list) / count($ack_list) : 0;
 
         $result['pub_rate_max'] = max($pub_list);
         $result['pub_rate_min'] = min($pub_list);

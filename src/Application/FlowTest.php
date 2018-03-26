@@ -239,7 +239,6 @@ class FlowTest
     public function showResult()
     {
         $file = $this->collector->getFilename();
-        $file = getcwd() . DIRECTORY_SEPARATOR . 'test_17-03-29_01_10.log';
         $fileData = file_get_contents($file);
         #unlink($file);
         $flowReport = new FlowReport($fileData);

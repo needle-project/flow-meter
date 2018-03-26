@@ -98,8 +98,9 @@ class AmqpQueue
      */
     public function getStats($extraParameters = [])
     {
+        $vhost = $this->getConnection()->getVhost() === '/' ? '#' : $this->getConnection()->getVhost();
         $url = $this->getConnection()->getHttpApi() .
-            "queues/{$this->getConnection()->getVhost()}/{$this->getQueueName()}";
+            "queues/{$vhost}/{$this->getQueueName()}";
         $content = HttpApiConnector::getData(
             new ApiRequest(
                 $url,
@@ -118,15 +119,17 @@ class AmqpQueue
      */
     private function extractData(string $stats): array
     {
+
         $stats = json_decode($stats, true);
 
+        $stats = array_pop($stats);
         $return['consumers'] = $stats['consumers'];
         $return['message_count'] = $stats['messages'];
         $return['ack_rate'] = $stats['message_stats']['ack_details']['rate'];
         $return['pub_rate'] = $stats['message_stats']['publish_details']['rate'];
         $return['rdl_rate'] = $stats['message_stats']['redeliver_details']['rate'];
-        $return['idle_since'] = $stats['idle_since'];
-        $return['status'] = $stats['status'];
+        $return['idle_since'] = @$stats['idle_since'];
+        $return['status'] = @$stats['status'];
         return $return;
     }
 }

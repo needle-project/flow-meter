@@ -82,7 +82,14 @@ class MonitorCommand extends Command
      */
     public function getFileData(string $filename): array
     {
+	try {
+	
         $filename = new File($filename);
         return $filename->getContent()->getArray();
+	} catch (\Throwable $e) {
+		var_dump($filename);
+		var_dump($e->getMessage());
+		throw $e;
+	}
     }
 }
