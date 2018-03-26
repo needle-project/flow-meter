@@ -73,6 +73,7 @@ class MonitorCommand extends Command
         $inputData = $this->getFileData(
             $pathHelper->normalizePathSeparator(getcwd() . DIRECTORY_SEPARATOR . $inputDataFile)
         );
+
         return [$configData, $inputData];
     }
 
@@ -82,14 +83,7 @@ class MonitorCommand extends Command
      */
     public function getFileData(string $filename): array
     {
-	try {
-	
         $filename = new File($filename);
         return $filename->getContent()->getArray();
-	} catch (\Throwable $e) {
-		var_dump($filename);
-		var_dump($e->getMessage());
-		throw $e;
-	}
     }
 }

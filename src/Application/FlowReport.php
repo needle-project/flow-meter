@@ -87,9 +87,11 @@ class FlowReport
         $result['ack_rate_min'] = !empty($ack_list) ? max($ack_list) : 0;
         $result['ack_rate_avg'] = !empty($ack_list) ? array_sum($ack_list) / count($ack_list) : 0;
 
-        $result['pub_rate_max'] = max($pub_list);
-        $result['pub_rate_min'] = min($pub_list);
-        $result['pub_rate_avg'] = array_sum($pub_list) / count($pub_list);
+        $result['pub_rate_max'] = !empty($pub_list) ? max($pub_list) : 0;
+        $result['pub_rate_min'] = !empty($pub_list) ? min($pub_list) : 0;
+        $result['pub_rate_avg'] = array_sum($pub_list) > 0 && count($pub_list) ?
+            (array_sum($pub_list) / count($pub_list)) :
+            0;
 
         return $result;
     }

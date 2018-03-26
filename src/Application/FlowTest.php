@@ -220,8 +220,8 @@ class FlowTest
         $currentTime = microtime(true);
         $idleTimeSec = strtotime($idleTime);
 
-        // if the queue is idle for more than 10 seconds
-        $reachedExpectedIdleTime = false === is_null($idleTime) && ($currentTime - $idleTimeSec) > 15;
+        // if the queue is idle for more than 5 seconds
+        $reachedExpectedIdleTime = false === is_null($idleTime) && ($currentTime - $idleTimeSec) > 5;
         // and we waiting at least a minimum time until we can expect queue activity
         $waitedMinTime = ($currentTime - $startTime) > $this->minWaitTime;
         // under the max time we want the test to run
